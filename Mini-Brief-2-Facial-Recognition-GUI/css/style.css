@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  background: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#video {
+  display: none; /* hide raw webcam video */
+}
+
+
+#canvas {
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
