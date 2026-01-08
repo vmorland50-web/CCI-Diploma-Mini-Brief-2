@@ -122,24 +122,24 @@ function drawLandmarks() {
   pts.forEach(pt => point(pt._x, pt._y));
 }
 
-// ------------ EMOTION FROM LANDMARKS -------------------
+// ------face-tracking------ 
 
 function drawEmojiFromLandmarks() {
   const pts = detections[0].landmarks.positions;
 
-  // Mouth keypoints
+  //Mouth
   const leftMouth = pts[48];
   const rightMouth = pts[54];
   const topLip = pts[51];
   const bottomLip = pts[57];
 
-  // Eyebrow + eye points
+  //Eyebrow + eye 
   const leftBrow = pts[22];
   const rightBrow = pts[21];
   const leftEye = pts[41];
   const rightEye = pts[40];
 
-  // Features
+  //Features
   let smileWidth = dist(leftMouth._x, leftMouth._y, rightMouth._x, rightMouth._y);
   let mouthOpen = dist(topLip._x, topLip._y, bottomLip._x, bottomLip._y);
   let browHeight =
@@ -147,22 +147,22 @@ function drawEmojiFromLandmarks() {
     ((leftEye._y + rightEye._y) / 2);
 
 
-  // 😀 Happy
+  //Happy
   if (smileWidth > 65) {
     emotion = "Happy";
   }
 
-  // 😮 Surprised
+  //Surprised
   else if (mouthOpen > 25) {
     emotion = "Surprised";
   }
 
-  // 😢 Sad
+  //Sad
   else if (smileWidth < 45) {
     emotion = "Sad";
   }
 
-  // 😡 Angry (eyebrows lower)
+  //Angry
   else if (browHeight < -12) {
     emotion = "Angry";
   }
@@ -228,7 +228,7 @@ function draw(){
   textSize(20)
   text("Emotion: ", 10, 140);
 
-  textSize(20);// Show live data
+  textSize(20);
     text("Save Interval: " + saveSeconds + " Sec", 10, 170); // Show save time
   
     text("Readings saved: " + savedData.length, 10, 230);
